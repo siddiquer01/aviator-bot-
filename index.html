@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aviator Predictor Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #1e1e2f, #2c3e50);
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      width: 300px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #00c9ff;
+      border: none;
+      border-radius: 10px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background-color: #00a1cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Aviator Predictor Login</h2>
+    <input type="email" id="email" placeholder="Enter Gmail" required />
+    <input type="password" id="password" placeholder="Enter Password" required />
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script type="module">
+    // Import Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    // Your Firebase Config (replace with your project config)
+const firebaseConfig = {
+  apiKey: "AIzaSyCWXIrGUj0848i0AW4o0T_asmFb-B6rdXk",
+  authDomain: "aviator-4295c.firebaseapp.com",
+  projectId: "aviator-4295c",
+  storageBucket: "aviator-4295c.firebasestorage.app",
+  messagingSenderId: "1004641033931",
+  appId: "1:1004641033931:web:0fd393e04b5ab42f85854e",
+  measurementId: "G-HPBKS2ZLEK"
+};
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Login function
+    window.login = function () {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    alert("Login successful!");
+    window.location.href = "predict.html"; // ✅ Redirect after login
+  })
+  .catch((error) => {
+    alert("Login failed: " + error.message);
+  });
+    }
+  </script>
+</body>
+</html>
